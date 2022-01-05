@@ -8,7 +8,7 @@ public class StudentGroup {
     @Id
     @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
 
     @Column(name = "group_name")
     private String name;
@@ -20,7 +20,7 @@ public class StudentGroup {
     @OneToMany(targetEntity = Student.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "group_students_id")
     private List<Student> students;
-    public Long getId() {
+    public long getId() {
         return id;
     }
 

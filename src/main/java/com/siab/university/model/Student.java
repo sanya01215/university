@@ -18,7 +18,7 @@ public class Student {
     @Column(name = "name")
     private String name;
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 

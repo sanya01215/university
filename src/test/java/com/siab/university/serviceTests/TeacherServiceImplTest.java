@@ -3,12 +3,12 @@ package com.siab.university.serviceTests;
 import com.siab.university.model.Teacher;
 import com.siab.university.repository.TeacherRepository;
 import com.siab.university.service.TeacherService;
+import com.siab.university.service.impl.TeacherServiceImpl;
 import org.junit.jupiter.api.Test;
-import org.junit.runner.RunWith;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.test.context.junit4.SpringRunner;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
 import java.util.Optional;
 
@@ -18,13 +18,12 @@ import static org.mockito.ArgumentMatchers.anyLong;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-@RunWith(SpringRunner.class)
-@SpringBootTest
+@ExtendWith(MockitoExtension.class)
 public class TeacherServiceImplTest {
-    @MockBean
+    @Mock
     private TeacherRepository teacherRepository;
-    @Autowired
-    private TeacherService teacherService;
+    @InjectMocks
+    private TeacherServiceImpl teacherService;
 
     @Test
     public void createTeacherSuccess() {
@@ -52,9 +51,9 @@ public class TeacherServiceImplTest {
         assertThat(updatedStudent.getName()).isNotNull();
     }
     @Test
-    public void deleteStudentSuccess() {
+    public void deleteTeacherSuccess() {
         Teacher teacher = getTestTeacher();
-        when(teacherRepository.findById(teacher.getId())).thenReturn(Optional.of(teacher));
+        when(teacherRepository.deleteById(teacher.getId())).thenReturn(Optional.of(teacher));
         teacherService.deleteById(teacher.getId());
         verify(teacherRepository).deleteById(teacher.getId());
     }

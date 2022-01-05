@@ -60,8 +60,8 @@ public class StudentServiceImpl implements com.siab.university.service.StudentSe
 
 
     @Override
-    public void deleteById(long id) {
-        studentRepository.deleteById(id);
+    public Student deleteById(long id) {
+        return studentRepository.deleteById(id).orElseThrow(() -> new EntityNotFoundException(Student.class.getName()));
     }
 
 

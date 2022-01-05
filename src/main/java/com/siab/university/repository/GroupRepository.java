@@ -10,6 +10,6 @@ import java.util.Optional;
 @Repository
 public interface GroupRepository extends JpaRepository<StudentGroup,Long> {
     Optional<StudentGroup> findByName(String name);
-    Optional<StudentGroup> findById(Long Id);
-    void deleteById(Long Id);
+    Optional<StudentGroup> findById(long Id);
+    Optional<StudentGroup> deleteById(long Id);
 }

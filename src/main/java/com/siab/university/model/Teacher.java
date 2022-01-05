@@ -12,11 +12,11 @@ public class Teacher{
     @Id
     @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
+    private long id;
     @Column(name = "name")
     private String name;
 
-    public Long getId() {
+    public long getId() {
         return id;
     }
 

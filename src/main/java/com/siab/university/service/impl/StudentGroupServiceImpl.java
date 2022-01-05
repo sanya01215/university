@@ -24,7 +24,7 @@ public class StudentGroupServiceImpl{
     }
 
 
-    public StudentGroup updateStudentGroup(StudentGroup studentGroup, Long groupId) {
+    public StudentGroup updateStudentGroup(StudentGroup studentGroup, long groupId) {
         return groupRepository.save(studentGroup);
     }
 
@@ -35,7 +35,7 @@ public class StudentGroupServiceImpl{
 
 
     public StudentGroup getStudentGroupById(long id) throws EntityNotFoundException{
-        return groupRepository.getById(id);
+        return groupRepository.findById(id).orElseThrow(() -> new EntityNotFoundException(StudentGroup.class.getName()));
     }
 
 
