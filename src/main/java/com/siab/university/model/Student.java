@@ -3,11 +3,11 @@ package com.siab.university.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Students")
+@Table(name = "students")
 public class Student {
-    @ManyToOne(targetEntity = StudentGroup.class, fetch = FetchType.LAZY)
+    @ManyToOne(targetEntity = Group.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "group_id")
-    private StudentGroup group;
+    private Group group;
     @Column(name = "yearOfStudy")
     private String yearOfStudy;
 

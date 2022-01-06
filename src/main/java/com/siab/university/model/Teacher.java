@@ -3,11 +3,11 @@ package com.siab.university.model;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "Teachers")
-public class Teacher{
-    @OneToOne(targetEntity = StudentGroup.class, fetch = FetchType.LAZY)
+@Table(name = "teachers")
+public class Teacher {
+    @OneToOne(targetEntity = Group.class, fetch = FetchType.LAZY)
     @JoinColumn(name = "teacher_group_id")
-    private StudentGroup group;
+    private Group group;
 
     @Id
     @Column(name = "id", nullable = false)

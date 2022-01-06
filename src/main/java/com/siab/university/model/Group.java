@@ -3,8 +3,8 @@ package com.siab.university.model;
 import javax.persistence.*;
 import java.util.List;
 @Entity
-@Table(name = "Groups")
-public class StudentGroup {
+@Table(name = "groups")
+public class Group {
     @Id
     @Column(name = "id", nullable = false)
     @GeneratedValue(strategy = GenerationType.IDENTITY)

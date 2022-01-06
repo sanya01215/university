@@ -6,13 +6,13 @@ import java.util.List;
 
 public interface StudentGroupService  {
 //groups
-    StudentGroup createStudentGroup (StudentGroup studentGroup);
+    Group createStudentGroup (Group group);
 
-    StudentGroup updateStudentGroup (StudentGroup studentGroup, Long groupId);
+    Group updateStudentGroup (Group group, Long groupId);
 
-    List<StudentGroup> findAllStudentGroups();
+    List<Group> findAllStudentGroups();
 
-    StudentGroup getStudentGroupById(long id);
+    Group getStudentGroupById(long id);
 
     void deleteStudentGroupById(long id);
 }

@@ -4,7 +4,7 @@ services:
     image: postgres:11.0
     hostname: localhost
     ports:
-      - 5432:5432
+      - "5432:5432"
     environment:
       POSTGRES_PASSWORD: postgres_pass
       POSTGRES_DB: postgres_db
