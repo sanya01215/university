@@ -27,7 +27,7 @@ public class StudentController {
         return studentService.update(person, id);
     }
 
-    @GetMapping
+    @GetMapping("/all")
     public List<Student> getStudents() {
         return studentService.findAll();
     }

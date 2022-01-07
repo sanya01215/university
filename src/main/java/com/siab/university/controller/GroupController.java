@@ -11,41 +11,41 @@ import java.util.List;
 @RestController
 @RequestMapping("/university/api/v1/group")
 public class GroupController {
-    private final GroupServiceImpl groupService;
+    private final GroupServiceImpl studentGroupService;
 
     @Autowired
     public GroupController(GroupServiceImpl groupService) {
-        this.groupService = groupService;
+        this.studentGroupService = groupService;
     }
 
     @PostMapping
-    public Group createGroup(Group group) {
-        return groupService.createStudentGroup(group);
+    public Group createStudentGroup(Group group) {
+        return studentGroupService.createStudentGroup(group);
     }
 
     @PostMapping(value = "{id}")
-    public Group updateStudentInGroup(@PathVariable Long studentId, Group group) {
-        return groupService.updateStudentGroup(group, studentId);
+    public Group updateStudent(@PathVariable Long studentId, Group group) {
+        return studentGroupService.updateStudentGroup(group,studentId);
     }
 
-    @GetMapping
+    @GetMapping("/all")
     public List<Group> getGroups() {
-        return groupService.findAllStudentGroups();
+        return studentGroupService.findAllStudentGroups();
     }
 
     @GetMapping(value = "{id}")
     public Group getGroupById(@PathVariable Integer studentId) throws EntityNotFoundException {
-        return groupService.getStudentGroupById(studentId);
+        return studentGroupService.getStudentGroupById(studentId);
     }
 
     @DeleteMapping
-    public void deleteGroupById(Long id) {
-        groupService.deleteStudentGroupById(id);
+    public void deleteStudentGroupById(Long id) {
+        studentGroupService.deleteStudentGroupById(id);
     }
 
     @DeleteMapping("{id}")
-    public void deleteGroupById(@PathVariable Integer id) {
-        groupService.deleteStudentGroupById(id);
+    public void deleteStudentGroupById(@PathVariable Integer id) {
+        studentGroupService.deleteStudentGroupById(id);
     }
 
 

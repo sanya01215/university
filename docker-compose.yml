@@ -1,16 +1,18 @@
 version: '3.7'
 services:
-  postgres:
-    image: postgres:11.0
-    hostname: localhost
-    ports:
-      - "5432:5432"
+  db:
+    image: postgres
+    restart: always
     environment:
-      POSTGRES_PASSWORD: postgres_pass
-      POSTGRES_DB: postgres_db
-  web:
-    build: .
+     POSTGRES_PASSWORD: root
+  adminer:
+    image: adminer
+    restart: always
     ports:
-      - "5000:5000"
-  redis:
-      image: "redis:alpine"
+      - "9991:8080"
+  web:
+   environment:
+    SPRING_DATASOURCE_URL: jdbc:postgresql://db:5432/postgres
+   build: .
+   ports:
+      - "9992:8080"

@@ -39,8 +39,8 @@ public class GroupServiceImpl {
     }
 
 
-    public void deleteStudentGroupById(long id) {
-        groupRepository.deleteById(id);
+    public Group deleteStudentGroupById(long id) {
+       return groupRepository.deleteById(id).orElseThrow(()-> new EntityNotFoundException(Group.class.getName()));
     }
 
 }

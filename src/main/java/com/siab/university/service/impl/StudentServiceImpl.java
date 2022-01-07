@@ -54,8 +54,9 @@ public class StudentServiceImpl implements com.siab.university.service.StudentSe
 
 
     @Override
-    public void delete(Student student) {
+    public Student delete(Student student) {
         studentRepository.delete(student);
+        return student;
     }
 
 

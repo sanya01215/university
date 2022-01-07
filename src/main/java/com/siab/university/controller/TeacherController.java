@@ -22,7 +22,7 @@ public class TeacherController {
         return teacherService.save(teacher);
     }
 
-    @GetMapping
+    @GetMapping("/all")
     public List<Teacher> getTeachers() {
         return teacherService.findAll();
     }
