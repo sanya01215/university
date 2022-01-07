@@ -54,14 +54,15 @@ public class StudentServiceImpl implements com.siab.university.service.StudentSe
 
 
     @Override
-    public void delete(Student student) {
+    public Student delete(Student student) {
         studentRepository.delete(student);
+        return student;
     }
 
 
     @Override
-    public void deleteById(long id) {
-        studentRepository.deleteById(id);
+    public Student deleteById(long id) {
+        return studentRepository.deleteById(id).orElseThrow(() -> new EntityNotFoundException(Student.class.getName()));
     }
 
 

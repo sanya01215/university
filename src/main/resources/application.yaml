@@ -2,8 +2,7 @@ spring:
   jpa:
     hibernate:
       ddl-auto: create
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
   datasource:
-    url: "jdbc:postgresql://localhost:5432/"
+    url: ${SPRING_DATASOURCE_URL}
     username: postgres
-    password: postgres_pass
+    password: root
