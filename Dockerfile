@@ -1,13 +1,24 @@
-FROM gradle:7.1.1-jdk11 AS build
+# temp container to build using gradle
+FROM gradle:7.1.1-jdk AS TEMP_BUILD_IMAGE
+ENV APP_HOME=/usr/app/
+WORKDIR $APP_HOME
+COPY build.gradle settings.gradle $APP_HOME
+
+COPY gradle $APP_HOME/gradle
 COPY --chown=gradle:gradle . /home/gradle/src
-WORKDIR /home/gradle/src
-RUN gradle build --no-daemon
+USER root
+RUN chown -R gradle /home/gradle/src
+RUN gradle build || return 0
+COPY . .
+RUN gradle clean build
 
 # we will use openjdk 8 with alpine as it is a very small linux distro
 FROM openjdk:8-jre-alpine3.9
+ENV ARTIFACT_NAME=university-0.0.1-SNAPSHOT.jar
+ENV APP_HOME=/usr/app/
 
-# copy the packaged jar file into our docker image
-COPY build/libs/university-0.0.1-SNAPSHOT.jar /demo.jar
+WORKDIR $APP_HOME
+COPY --from=TEMP_BUILD_IMAGE $APP_HOME/build/libs/$ARTIFACT_NAME .
 
-# set the startup command to execute the jar
-CMD ["java", "-jar", "/demo.jar"]
+EXPOSE 8080
+ENTRYPOINT exec java -jar ${ARTIFACT_NAME}
